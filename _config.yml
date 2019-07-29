@@ -61,7 +61,7 @@ author:
   bio    : "Data Science Portfolio"
   links:
     - label: "Website"
-      icon: "fas fa-fw fa-linkedin"
+      icon: "fab fa-linkedin"
       url: "https://www.linkedin.com/in/westjc/"
     # - label: "Twitter"
     #   icon: "fab fa-fw fa-twitter-square"
