@@ -1,7 +1,17 @@
 
-# Network Analytics
+---
+title: "Visualising Stock Correlations"
+date: 2019-09-07T11:00:00
+categories:
+  - blog
+tags:
+  - Network Analytics
+  - Plotly
+  - Networkx
+  - Interactive visualisations
+  - Quantitative Finance
+---
 
-## Visualising correlations between asset prices
 
 ---------------------------
 
