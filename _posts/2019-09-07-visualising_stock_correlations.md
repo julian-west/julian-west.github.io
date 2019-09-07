@@ -28,8 +28,6 @@ tags:
 
 ### Introduction
 
-<script src="https://gist.github.com/julian-west/8a604f321ba9f3e2cc8897795986340c.js"></script>
-
 Network analysis is becoming an ever increasingly popular method to analyse and visualise complex relationships in data in an intuitive way.
 
 One interesting application of network analytics is visualising relationships between asset classes in the finance industry. We are always told that equities and bonds tend to move in [opposite directions](https://vanguardblog.com/2018/07/09/exploring-the-relationship-between-stocks-and-bonds/) and certain assets such as gold and the Japanese Yen are 'safe-haven' assets and therefore behave in similar ways. But what does that actually _look_ like and are there any other interesting relationships between asset classes? Networks can be a great way to convey this information at a high level and help understand broad market dynamics.
@@ -47,39 +45,8 @@ In this post I will explain how we can visualise asset correlations as an intera
 - __Plotly__ to create the final interactive visualisation
 
 
-  <div class="input_area" markdown="1">
+<script src="https://gist.github.com/julian-west/8a604f321ba9f3e2cc8897795986340c.js"></script>
 
-```python
-#data manipulation
-import numpy as np
-import pandas as pd
-
-#netowrk analysis
-import networkx as nx
-
-#plotting
-%matplotlib inline
-import matplotlib.pyplot as plt
-import seaborn as sns
-
-
-#imports for plotly interactive visualisation library
-import plotly.graph_objs as go
-from plotly.graph_objs import *
-from plotly.offline import download_plotlyjs, init_notebook_mode, plot, iplot
-
-#plotly offline mode
-init_notebook_mode(connected=True)
-
-#filter warnings for final presentation
-import warnings
-warnings.filterwarnings("ignore")
-
-#notebook formatting
-from IPython.core.display import display, HTML
-```
-
-  </div>
 
 
   <div markdown="0">
@@ -108,33 +75,14 @@ from IPython.core.display import display, HTML
 
 For this analysis I will use a dataset containing the daily adjusted closing prices of 39 major ETFs which represent different asset classes covering equities, bonds, currencies and commodities. The data covers a period of 4 years between November 2013 and November 2017.
 
+<script src="https://gist.github.com/julian-west/5a37d92139eb3ab18b0d24534552d08c.js"></script>
 
-  <div class="input_area" markdown="1">
 
-```python
-# read csv file
-raw_asset_prices_df = pd.read_csv("asset_prices.csv", index_col='Date')
-
-# get number of rows and columns of the dataset
-df_shape = (raw_asset_prices_df.shape)
-print(f"There are {df_shape[0]} rows and {df_shape[1]} columns in the dataset")
-print(f"Data timeperiod covers: {min(raw_asset_prices_df.index)} to {max(raw_asset_prices_df.index)}")
-
-# show first five rows
-raw_asset_prices_df.head()
-```
-
-  </div>
-
-  {:.output_stream}
   ```
   There are 1013 rows and 39 columns in the dataset
 Data timeperiod covers: 2013-11-01 to 2017-11-08
 
   ```
-
-
-
 
   <div markdown="0">
   <div>
@@ -334,22 +282,8 @@ Data timeperiod covers: 2013-11-01 to 2017-11-08
 We can see that the csv file of asset prices contains 39 different assets and 1013 records for each asset. The time-series is in reverse order (newest to oldest) and there are no missing datapoints in the dataset. Each ETF in the dataset is encoded by its abbreviated ticker which makes it difficult to understand what sector each ETF actually represents. To make the ETF codes more readable I created an alias for each one which is more descriptive. We will rename the columns with these aliases so the future analysis is more interpretable.
 
 
-  <div class="input_area" markdown="1">
+<script src="https://gist.github.com/julian-west/c8b29048202ee66f1130a4d52292aea5.js"></script>
 
-```python
-aliases = pd.read_csv("etf_names.csv",usecols=['Code','ETF Alias'])
-
-#example aliases
-display(aliases)
-
-#convert to dictionary
-aliases = dict(zip(aliases['Code'],aliases['ETF Alias']))
-
-#rename columns from ETF codes to aliases
-raw_asset_prices_df = raw_asset_prices_df.rename(columns=aliases)
-```
-
-  </div>
 
 
   <div markdown="0">
@@ -584,27 +518,7 @@ raw_asset_prices_df = raw_asset_prices_df.rename(columns=aliases)
 Before calculating the correlation matrix, it is important to first normalise the dataset and convert the absolute asset prices into daily returns. In financial time-series it is common to make this transformation as investors are typically interested in returns on assets rather than their absolute prices. By normalising the data it allows us to compare the expected returns of two assets more easily.
 
 
-
-  <div class="input_area" markdown="1">
-
-```python
-# create empty dataframe for log returns information
-log_returns_df = pd.DataFrame()
-
-# calculate log returns of each asset
-# loop through each column in dataframe and and calculate the daily log returns
-# add log returns column to new a dataframe
-for col in raw_asset_prices_df.columns:
-    # dates are given in reverse order so need to set diff to -1.
-    log_returns_df[col] = np.log(raw_asset_prices_df[col]).diff(-1)
-
-#check output of log returns dataframe
-log_returns_df.head()
-```
-
-  </div>
-
-
+<script src="https://gist.github.com/julian-west/c88bcf7639dbcc1cb1d147155e8d33e0.js"></script>
 
 
   <div markdown="0">
@@ -807,17 +721,7 @@ log_returns_df.head()
 To calculate the pairwise correlations between assets we can simply use the inbuilt pandas _corr()_ function.
 
 
-  <div class="input_area" markdown="1">
-
-```python
-#calculate correlation matrix using inbuilt pandas function
-correlation_matrix = log_returns_df.corr()
-
-#show first five rows of the correlation matrix
-correlation_matrix.head()
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/c8dc3e002e282e475d652feb48b900ff.js"></script>
 
 
 
@@ -1000,16 +904,7 @@ The conventional way to visualise correlations is via a heatmap. Before developi
 Seaborn has a very useful function called _clustermap_ which visualises the matrix as a heatmap but also clusters the ETFs so that ETFs which behave similarly are next to each other. Clustered heatmaps can be a useful way of visualising correlations between attributes in a dataset, especially if the data is highly dimensional as it automatically reorders attributes which are similar to each other into clusters. This makes the heatmap more structured and readable so it is easier to identify relationships between ETFs and which asset classes behave similarly.
 
 
-  <div class="input_area" markdown="1">
-
-```python
-#visualise correlation matrix using a clustered heatmap
-display(HTML("<h3>Clustered Heatmap: Correlations between asset price returns</h3>"))
-sns.clustermap(correlation_matrix, cmap="RdYlGn")
-plt.show()
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/c59beefcf11765f21128520591cf781b.js"></script>
 
 
   <div markdown="0">
