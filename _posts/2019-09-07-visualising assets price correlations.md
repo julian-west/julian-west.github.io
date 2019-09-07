@@ -2,20 +2,14 @@
 ---
 title: "Visualising Stock Correlations"
 date: 2019-09-07T11:00:00
-categories:
-  - blog
-tags:
-  - Network Analytics
-  - Plotly
-  - Networkx
-  - Interactive visualisations
-  - Quantitative Finance
+categories: ["blog"]
+tags: ["Network Analytics", "Plotly", "Networkx", "Visualisation", "Quantitative Finance"]
 ---
 
 
 ---------------------------
 
-<img src='../assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;"></img>
+<img src='../assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;">
 
 
 ### Topics covered
@@ -25,8 +19,11 @@ tags:
 - __Minimum spanning trees__
 - __Interactive visualisations using Plotly__
 
-
+----------------------------------
 __All code and raw data is available on this [Github repository](https://github.com/julian-west/asset_price_correlations)__
+
+__The final interactive Plotly visualisation is embedded at the bottom of this page__
+
 
 ### Introduction
 
