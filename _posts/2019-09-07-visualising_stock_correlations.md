@@ -28,6 +28,7 @@ tags:
 
 ### Introduction
 
+<script src="https://gist.github.com/julian-west/8a604f321ba9f3e2cc8897795986340c.js"></script>
 
 Network analysis is becoming an ever increasingly popular method to analyse and visualise complex relationships in data in an intuitive way.
 
