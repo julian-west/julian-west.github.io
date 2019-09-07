@@ -2,8 +2,14 @@
 ---
 title: "Visualising Stock Correlations"
 date: 2019-09-07T11:00:00
-categories: ["blog"]
-tags: ["Network Analytics", "Plotly", "Networkx", "Visualisation", "Quantitative Finance"]
+categories:
+  - blog
+tags:
+  - Network Analytics
+  - Plotly
+  - Networkx
+  - Visualisation
+  - Quantitative Finance
 ---
 
 
@@ -20,10 +26,14 @@ tags: ["Network Analytics", "Plotly", "Networkx", "Visualisation", "Quantitative
 - __Interactive visualisations using Plotly__
 
 ----------------------------------
-__All code and raw data is available on this [Github repository](https://github.com/julian-west/asset_price_correlations)__
+All code and raw data is available on this
+<a href="https://github.com/julian-west/asset_price_correlations" target="_blank">Github repository</a>
 
-__The final interactive Plotly visualisation is embedded at the bottom of this page__
+The final interactive Plotly visualisation is embedded at the bottom of this page (
+<a href="#plotly graph"> here</a>
+  )
 
+---------------------------------
 
 ### Introduction
 
@@ -1169,7 +1179,7 @@ To plot the network we define the scatter plot (tracer) and line plot (tracer_ma
   </div>
 
 
-
+<a name="plotly graph"></a>
   <div markdown="0">
 
 
