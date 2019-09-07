@@ -26,6 +26,8 @@ tags:
 - __Interactive visualisations using Plotly__
 
 
+__All code and raw data is available on this [Github repository](https://github.com/julian-west/asset_price_correlations)__
+
 ### Introduction
 
 Network analysis is becoming an ever increasingly popular method to analyse and visualise complex relationships in data in an intuitive way.
@@ -939,22 +941,7 @@ In order to analyse the the correlations matrix as a network we first need to co
 __Create edge list__
 
 
-  <div class="input_area" markdown="1">
-
-```python
-#convert matrix to list of edges and rename the columns
-edges = correlation_matrix.stack().reset_index()
-edges.columns = ['asset_1','asset_2','correlation']
-
-#remove self correlations
-edges = edges.loc[edges['asset_1'] != edges['asset_2']].copy()
-
-#show the first 5 rows of the edge list dataframe.
-edges.head()
-```
-
-  </div>
-
+<script src="https://gist.github.com/julian-west/b66319a742d8b8a7c874c19d6ac49050.js"></script>
 
 
 
@@ -1025,20 +1012,8 @@ __Create graph from edge list__
 Now that we have an edge list we need to feed that into the networkx library to create a graph. Note that this network is undirected as the correlation between assets is the same in both directions.
 
 
-  <div class="input_area" markdown="1">
+<script src="https://gist.github.com/julian-west/2b3800b324eeeb2d339f097f6dd7f759.js"></script>
 
-```python
-#create undirected graph with weights corresponding to the correlation magnitude
-G0 = nx.from_pandas_edgelist(edges, 'asset_1', 'asset_2', edge_attr=['correlation'])
-
-#print out the graph info
-#check number of nodes and degrees are as expected (all should have degree = 38, i.e. average degree = 38)
-print(nx.info(G0))
-```
-
-  </div>
-
-  {:.output_stream}
   ```
   Name:
 Type: Graph
@@ -1058,32 +1033,7 @@ To visualise the graph we have just created, we can use a number of 'out-of-the-
 - spring_layout - Position nodes using Fruchterman-Reingold force-directed algorithm.   
 
 
-
-  <div class="input_area" markdown="1">
-
-```python
-fig, ax = plt.subplots(nrows=2, ncols=2,figsize=(20,20))
-
-nx.draw(G0, with_labels=True, node_size=700, node_color="#e1575c",
-        edge_color='#363847',  pos=nx.circular_layout(G0),ax=ax[0,0])
-ax[0,0].set_title("Circular layout")
-
-nx.draw(G0, with_labels=True, node_size=700, node_color="#e1575c",
-        edge_color='#363847',  pos=nx.random_layout(G0),ax=ax[0,1])
-ax[0,1].set_title("Random layout")
-
-nx.draw(G0, with_labels=True, node_size=700, node_color="#e1575c",
-        edge_color='#363847',  pos=nx.spring_layout(G0),ax=ax[1,0])
-ax[1,0].set_title("Spring layout")
-
-nx.draw(G0, with_labels=True, node_size=700, node_color="#e1575c",
-        edge_color='#363847',  pos=nx.spectral_layout(G0),ax=ax[1,1])
-ax[1,1].set_title("Spectral layout")
-
-plt.show()
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/9e1fce7882058e2200154723989886e9.js"></script>
 
 
 ![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_21_0.png)
@@ -1110,33 +1060,8 @@ For a first iteration to improve the network visualisation we can take the circu
 ##### Remove edges below a threshold
 
 
-  <div class="input_area" markdown="1">
+<script src="https://gist.github.com/julian-west/dbc6b99d5fc5ab2cc9a77780450930f8.js"></script>
 
-```python
-# 'winner takes all' method - set minium correlation threshold to remove some edges from the diagram
-threshold = 0.5
-
-# create a new graph from edge list
-Gx = nx.from_pandas_edgelist(edges, 'asset_1', 'asset_2', edge_attr=['correlation'])
-
-# list to store edges to remove
-remove = []
-# loop through edges in Gx and find correlations which are below the threshold
-for asset_1, asset_2 in Gx.edges():
-    corr = Gx[asset_1][asset_2]['correlation']
-    #add to remove node list if abs(corr) < threshold
-    if abs(corr) < threshold:
-        remove.append((asset_1, asset_2))
-
-# remove edges contained in the remove list
-Gx.remove_edges_from(remove)
-
-print(str(len(remove)) + " edges removed")
-```
-
-  </div>
-
-  {:.output_stream}
   ```
   530 edges removed
 
@@ -1144,59 +1069,11 @@ print(str(len(remove)) + " edges removed")
 
 ##### Create colour, edge thickness and node size features
 
-
-  <div class="input_area" markdown="1">
-
-```python
-def assign_colour(correlation):
-    if correlation <= 0:
-        return "#ffa09b"  # red
-    else:
-        return "#9eccb7"  # green
-
-
-def assign_thickness(correlation, benchmark_thickness=2, scaling_factor=3):
-    return benchmark_thickness * abs(correlation)**scaling_factor
-
-
-def assign_node_size(degree, scaling_factor=50):
-    return degree * scaling_factor
-
-
-# assign colours to edges depending on positive or negative correlation
-# assign edge thickness depending on magnitude of correlation
-edge_colours = []
-edge_width = []
-for key, value in nx.get_edge_attributes(Gx, 'correlation').items():
-    edge_colours.append(assign_colour(value))
-    edge_width.append(assign_thickness(value))
-
-# assign node size depending on number of connections (degree)
-node_size = []
-for key, value in dict(Gx.degree).items():
-    node_size.append(assign_node_size(value))
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/29299749dd7591563e67ddef962ac355.js"></script>
 
 ##### Draw improved graph
 
-
-  <div class="input_area" markdown="1">
-
-```python
-# draw improved graph
-sns.set(rc={'figure.figsize': (9, 9)})
-font_dict = {'fontsize': 18}
-
-nx.draw(Gx, pos=nx.circular_layout(Gx), with_labels=True,
-        node_size=node_size, node_color="#e1575c", edge_color=edge_colours,
-        width=edge_width)
-plt.title("Asset price correlations", fontdict=font_dict)
-plt.show()
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/69667e33e9e8ad2ebb881902539084fc.js"></script>
 
 
 ![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_28_0.png)
@@ -1213,18 +1090,7 @@ Looking at this network we could now quickly identify which assets are highly co
 The circular layout, however, does not group the nodes in a meaningful order, it just orders the nodes in the order in which they were created, therefore it is difficult to gain insight as to which assets are most similar to each other in terms of correlations to other nodes. We can improve this with a spring based layout using the 'Fruchterman-Reingold' algorithm [2] which sets the positions of the nodes using a cost function which minimises the distances between strongly correlated nodes. This algorithm will therefore cluster the nodes which are strongly correlated with each other allowing the viewer to quickly identify groups of assets with similar properties.
 
 
-  <div class="input_area" markdown="1">
-
-```python
-# draw improved graph
-nx.draw(Gx, pos=nx.fruchterman_reingold_layout(Gx), with_labels=True,
-        node_size=node_size, node_color="#e1575c", edge_color=edge_colours,
-       width = edge_width)
-plt.title("Asset price correlations - Fruchterman-Reingold layout",fontdict=font_dict)
-plt.show()
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/09ef058bc60da14d838fa8c49ed5c0fc.js"></script>
 
 
 ![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_30_0.png)
@@ -1243,31 +1109,7 @@ It is common in financial networks to use a minimum spanning tree [3,4,5] to vis
 [Kruskal's algorithm](https://en.wikipedia.org/wiki/Kruskal%27s_algorithm) is used to calculate the minimum spanning tree and is fairly intuitive. However, Networkx has an inbuilt function which calculates the minimum spanning tree for us.
 
 
-  <div class="input_area" markdown="1">
-
-```python
-#create minimum spanning tree layout from Gx (after small correlations have been removed)
-mst = nx.minimum_spanning_tree(Gx)
-
-edge_colours = []
-
-#assign edge colours
-for key, value in nx.get_edge_attributes(mst, 'correlation').items():
-    edge_colours.append(assign_colour(value))
-
-
-#draw minimum spanning tree. Set node size and width to constant
-nx.draw(mst, with_labels=True, pos=nx.fruchterman_reingold_layout(mst),
-        node_size=200, node_color="#e1575c", edge_color=edge_colours,
-       width = 1.2)
-
-#set title
-plt.title("Asset price correlations - Minimum Spanning Tree",fontdict=font_dict)
-plt.show()
-```
-
-  </div>
-
+<script src="https://gist.github.com/julian-west/3ce28ae7db651b2bb8fc9cd33b4f8d4d.js"></script>
 
 ![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_33_0.png)
 
@@ -1302,83 +1144,7 @@ There are obviously many different bits of information of use which we could inc
 The following functions calculate the above quantities. It should be noted that Plotly tooltips are formatted using html. Therefore the input to the tooltip should be a string with the relevant html tags for any formatting that is required.
 
 
-  <div class="input_area" markdown="1">
-
-```python
-def convert_rankings_to_string(ranking):
-    """
-    Concatenates list of node and correlation into a single string which is the
-    preferred format for the plotly tooltip.
-
-    Inserts html "<br>" inbetween each item in order to add a new line in the tooltip
-    """
-    s = ''
-    for r in ranking:
-        s += r + "<br>"
-    return s
-
-
-def calculate_stats(returns=log_returns_df):
-    """calculate annualised returns and volatility for all ETFs
-
-    Output
-    -------
-    Outputs the annualised volatility and returns as a list of floats (for use in assigning node colours
-    and sizes) and also as a lists of formatted strings to be used in the tool tips.    
-    """
-
-    #log returns are additive, 252 trading days
-    annualized_returns = list(np.mean(returns)*252*100)
-
-    annualized_volatility = [np.std(returns[col]*100)*(252**0.5)
-                             for col in list(returns.columns)]
-
-
-    # create string for tooltip
-    annualized_volatility_2dp = ["Annualized Volatility: ""%.1f" % r + "%" for r in annualized_volatility]
-    annualized_returns_2dp = ["Annualized Returns: ""%.1f" % r + "%" for r in annualized_returns]
-
-    return annualized_volatility, annualized_returns, annualized_volatility_2dp, annualized_returns_2dp
-
-
-def get_top_and_bottom_three(df=correlation_matrix):
-    """
-    get a list of the top 3 and bottom 3 most/least correlated assests
-    for each node.
-
-    Parameters -> df - pandas correlation matrix
-
-    Returns -> top_3_list : list of lists containing the top 3 correlations (name and value)
-               bottom_3_list: list of lists containing the bottom three correlations (name and value)
-
-    """
-
-    top_3_list = []
-    bottom_3_list = []
-
-    for col in df.columns:
-
-        # exclude self correlation #reverse order of the list returned
-        top_3 = list(np.argsort(abs(df[col]))[-4:-1][::-1])
-        # bottom 3 list is returned in correct order
-        bottom_3 = list(np.argsort(abs(df[col]))[:3])
-
-        # get column index
-        col_index = df.columns.get_loc(col)
-
-        # find values based on index locations
-        top_3_values = [df.index[x] + ": %.2f" %
-                        df.iloc[x, col_index] for x in top_3]
-        bottom_3_values = [df.index[x] + ": %.2f" %
-                           df.iloc[x, col_index] for x in bottom_3]
-
-        top_3_list.append(convert_rankings_to_string(top_3_values))
-        bottom_3_list.append(convert_rankings_to_string(bottom_3_values))
-
-    return top_3_list, bottom_3_list
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/7d7ab41b49766ec2eadbee07f179c885.js"></script>
 
 ##### Function to generate coordinates
 
@@ -1386,30 +1152,7 @@ Plotly does not have an 'out-of-the-box' network graph chart, therefore we need 
 
 The function calculates the x and y coordinates for the scatter plot (Xnodes and Ynodes) and the coordinates of the starting and ending positions of the lines connecting nodes (Xedges, Yedges):
 
-
-
-  <div class="input_area" markdown="1">
-
-```python
-def get_coordinates(G=mst):
-    """Returns the positions of nodes and edges in a format for Plotly to draw the network"""
-    # get list of node positions
-    pos = nx.fruchterman_reingold_layout(mst)
-
-    Xnodes = [pos[n][0] for n in mst.nodes()]
-    Ynodes = [pos[n][1] for n in mst.nodes()]
-
-    Xedges = []
-    Yedges = []
-    for e in mst.edges():
-        # x coordinates of the nodes defining the edge e
-        Xedges.extend([pos[e[0]][0], pos[e[1]][0], None])
-        Yedges.extend([pos[e[0]][1], pos[e[1]][1], None])
-
-    return Xnodes, Ynodes, Xedges, Yedges
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/c2fd8efaae3f31563701010b631fbe3c.js"></script>
 
 __Plotly Graph Code__
 
@@ -1417,115 +1160,11 @@ Now we can finally plot the network as an interactive Plotly visualisation.
 
 First, we need to calculate all the quantities and concatenate them into a html string to be used as an input for the tooltip. Then we need to calculate the coordinates for the scatter and line plots and finally define the node color and size which depend on the direction and size of the annualised returns.
 
-
-  <div class="input_area" markdown="1">
-
-```python
-# ---------------------------------------
-# Get statistics for tooltip
-# ---------------------------------------
-
-# make list of node labels.
-node_label = list(mst.nodes())
-# calculate annualised returns, annualised volatility and round to 2dp
-annual_vol, annual_ret, annual_vol_2dp, annual_ret_2dp = calculate_stats()
-# get top and bottom 3 correlations for each node
-top_3_corrs, bottom_3_corrs = get_top_and_bottom_three()
-
-
-# create tooltip string by concatenating statistics
-description = [f"<b>{node}</b>" +
-               "<br>" + annual_ret_2dp[index] +
-               "<br>" + annual_vol_2dp[index] +
-               "<br><br>Strongest correlations with: " +
-               "<br>" + top_3_corrs[index] +
-               "<br>Weakest correlations with: "
-               "<br>" + bottom_3_corrs[index]
-               for index, node in enumerate(node_label)]
-
-
-# ---------------------------------------
-# Get poisitions of nodes and edges for Plotly graph
-# ---------------------------------------
-
-# get coordinates for nodes and edges
-Xnodes, Ynodes, Xedges, Yedges = get_coordinates()
-
-
-# ---------------------------------------
-# Assign node colour and size depending on annualised returns
-# ---------------------------------------
-
-# assign node colour depending on positive or negative annualised returns
-node_colour = [assign_colour(i) for i in annual_ret]
-
-# assign node size based on annualised returns size (scaled by a factor)
-node_size = [abs(x)**0.5*5 for x in annual_ret]
-```
-
-  </div>
+<script src="https://gist.github.com/julian-west/2ea09ab1a148481d124cf3a60d3c823b.js"></script>
 
 To plot the network we define the scatter plot (tracer) and line plot (tracer_marker) series and define some cosmetic parameters which dictate the graph layout.
 
-
-  <div class="input_area" markdown="1">
-
-```python
-# ---------------------------------------
-# Plot graph
-# ---------------------------------------
-
-# edges
-tracer = go.Scatter(x=Xedges, y=Yedges,
-                    mode='lines',
-                    line= dict(color='#DCDCDC', width=1),
-                    hoverinfo='none',
-                    showlegend=False)
-
-
-# nodes
-tracer_marker = go.Scatter(x=Xnodes, y=Ynodes,
-                           mode='markers+text',
-                           textposition='top center',
-                           marker=dict(size=node_size,
-                                            line=dict(width=1),
-                                            color=node_colour),
-                           hoverinfo='text',
-                           hovertext=description,
-                           text=node_label,
-                           textfont=dict(size=7),
-                           showlegend=False)
-
-
-axis_style = dict(title='',
-                  titlefont=dict(size=20),
-                  showgrid=False,
-                  zeroline=False,
-                  showline=False,
-                  ticks='',
-                  showticklabels=False)
-
-
-layout = dict(title='Plotly - interactive minimum spanning tree',
-              width=800,
-              height=800,
-              autosize=False,
-              showlegend=False,
-              xaxis=axis_style,
-              yaxis=axis_style,
-              hovermode='closest',
-             plot_bgcolor = '#fff')
-
-
-fig = dict(data=[tracer, tracer_marker], layout=layout)
-
-display(HTML("""<p>Node sizes are proportional to the size of annualised returns.<br>
-                Node colours signify positive or negative returns since beginning of the timeframe.</p> """))
-iplot(fig)
-```
-
-  </div>
-
+<script src="https://gist.github.com/julian-west/ca80206a4d1010b40a3cbf0382279ec1.js"></script>
 
   <div markdown="0">
   <p>Node sizes are proportional to the size of annualised returns.<br>
@@ -1566,13 +1205,10 @@ __Network drawing Software__
 - Gelphi Gelphi (https://gephi.org/)
 
 
-If you are interested in investigating network analytics in the financial industry in more detail, I would highly recommend checking out https://www.fnalab.com/ which is a commercial platform for financial network analytics. They have a free trial to their platform which has some very impressive network visualisations of the stock market but also financial transcations for fraud detection and many more applications.
+If you are interested in investigating network analytics in the financial industry in more detail, I would highly recommend checking out [FNA](https://www.fnalab.com/) which is a commercial platform for financial network analytics. They have a free trial to their platform which has some very impressive network visualisations of the stock market but also financial transcations for fraud detection and many more applications.
 
 
 ## References
-
-
-
 
 [1] Networkx documentation: https://networkx.github.io/documentation/stable/reference/drawing.html <br>
 [2]  Fruchterman, T.M. and Reingold, E.M., 1991. Graph drawing by force-directed placement. 1991. Zitiert auf den, p.37. <br>
