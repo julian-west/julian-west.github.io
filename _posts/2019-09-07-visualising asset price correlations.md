@@ -12,6 +12,7 @@ description: "Visualising interesting relationships between asset prices as an i
 excerpt: "Identifying risk in your stocks portfolio"
 header:
   teaser: /assets/images/stock-correlations-screenshot.png
+image: /assets/images/stock-correlations-screenshot.png
 ---
 
 
@@ -26,7 +27,7 @@ header:
 - __Interactive visualisations using Plotly__
 
 ----------------------------------
-All code and raw data is available on this
+All code and raw data is available in this
 <a href="https://github.com/julian-west/asset_price_correlations" target="_blank">Github repository</a>
 
 The final interactive Plotly visualisation is embedded at the bottom of this page (
