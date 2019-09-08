@@ -1,4 +1,4 @@
-[png]({{site.baseurl}}---
+---
 title: "Visualising asset price correlations"
 categories:
   - Blog
