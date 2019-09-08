@@ -3,13 +3,12 @@ permalink: /about/
 title: "About"
 ---
 
-Chemist by training Durham University
+After completing a master's degree in chemistry from Durham University and spending multiple summers interning
+in accountancy, I finally worked out that data science was far more interesting.
 
-Currently working as a data scientist for a market research provider in the semiconductor industry
-
-Completing an MSc in Business Analytics from Imperial College Business School
+Moved into the world of data in my current role at a market research provider to the semiconductor industry.
 
 Interested in all things data. In particular, the application of machine learning to quantitative finance.
 
-
+Outside of work in I play hockey, squash and have been known to occasionally run marathons. I am also fairly handy at [waterskiing](https://www.youtube.com/watch?v=DqTajYkYbEo). 
 
