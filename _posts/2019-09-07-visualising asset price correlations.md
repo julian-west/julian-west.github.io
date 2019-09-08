@@ -3,12 +3,12 @@ title: "Visualising asset price correlations"
 categories:
   - Blog
 tags:
-  - chat
-  - Post Formats
+  - Python
+  - Visualisations
+  - Plotly
+  - Quantitative Finance
 ---
 
-
----------------------------
 
 <img src='../assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;">
 
