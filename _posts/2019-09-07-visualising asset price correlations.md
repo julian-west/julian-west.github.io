@@ -1,6 +1,6 @@
 
 ---
-title: "Visualising Stock Correlations"
+title: "visualising asset price correlations"
 categories:
   - Blog
 tags:
