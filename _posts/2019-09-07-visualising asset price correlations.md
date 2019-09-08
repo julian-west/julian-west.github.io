@@ -11,7 +11,7 @@ tags:
 ---
 
 
-<img src='../assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;">
+<img src='{{site.baseurl}}/assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;">
 
 
 ### Topics covered
