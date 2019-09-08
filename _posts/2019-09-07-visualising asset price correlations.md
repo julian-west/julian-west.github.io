@@ -1,5 +1,5 @@
 ---
-title: "visualising asset price correlations"
+title: "Visualising asset price correlations"
 categories:
   - Blog
 tags:
