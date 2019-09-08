@@ -8,7 +8,7 @@ tags:
   - Plotly
   - Quantitative Finance
   - Network Analytics
-image:
+header:
   teaser: screenshot.png
 description: "Visualising interesting relationships between asset prices as an interactive network graph using Python and Plotly"
 excerpt: "Identifying risk in your stocks portfolio"
