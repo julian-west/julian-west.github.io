@@ -1,4 +1,3 @@
-
 ---
 title: "visualising asset price correlations"
 categories:
