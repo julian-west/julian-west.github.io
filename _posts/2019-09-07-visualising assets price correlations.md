@@ -2,13 +2,10 @@
 ---
 title: "Visualising Stock Correlations"
 categories:
-  - blog
+  - Blog
 tags:
-  - Network Analytics
-  - Plotly
-  - Networkx
-  - Visualisation
-  - Quantitative Finance
+  - chat
+  - Post Formats
 ---
 
 
