@@ -1,4 +1,4 @@
----
+[png]({{site.baseurl}}---
 title: "Visualising asset price correlations"
 categories:
   - Blog
@@ -918,7 +918,7 @@ Seaborn has a very useful function called _clustermap_ which visualises the matr
 
 
 
-![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_14_1.png)
+![[png]({{site.baseurl}}/assets/visualising_stock_correlations_files/visualising_stock_correlations_14_1.png)
 
 
 The heatmap is colour coded using a divergent colourscale where strong positive correlations (correlation = 1) are dark green, uncorrelated assets are yellow (correlation = 0) and negatively correlated assets are red (correlation = -1).
@@ -1039,7 +1039,7 @@ To visualise the graph we have just created, we can use a number of 'out-of-the-
 <script src="https://gist.github.com/julian-west/9e1fce7882058e2200154723989886e9.js"></script>
 
 
-![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_21_0.png)
+![[png]({{site.baseurl}}/assets/visualising_stock_correlations_files/visualising_stock_correlations_21_0.png)
 
 
 Whilst these visualisations may look pretty, they are not very useful in their current form as all nodes have the same number of edges (links), and each edge looks the same so no useful information about the correlations between ETFs can be gained.
@@ -1079,7 +1079,7 @@ For a first iteration to improve the network visualisation we can take the circu
 <script src="https://gist.github.com/julian-west/69667e33e9e8ad2ebb881902539084fc.js"></script>
 
 
-![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_28_0.png)
+![[png]({{site.baseurl}}/assets/visualising_stock_correlations_files/visualising_stock_correlations_28_0.png)
 
 
 The network visualisation has been improved in four main ways:
@@ -1096,7 +1096,7 @@ The circular layout, however, does not group the nodes in a meaningful order, it
 <script src="https://gist.github.com/julian-west/09ef058bc60da14d838fa8c49ed5c0fc.js"></script>
 
 
-![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_30_0.png)
+![[png]({{site.baseurl}}/assets/visualising_stock_correlations_files/visualising_stock_correlations_30_0.png)
 
 
 The Fruchterman Reingold layout has successfully grouped the assets into clusters of strongly correlated assets. As seen before in the heatmap visualisation, there are distinct clusters of assets which behave similarly to each other. There is a cluster containing bond ETFs, a cluster of precious metal ETFs (silver, gold, goldminers), a cluster of currencies (CHF, USD, Euro) and a large cluster for equities.
@@ -1114,7 +1114,7 @@ It is common in financial networks to use a minimum spanning tree [3,4,5] to vis
 
 <script src="https://gist.github.com/julian-west/3ce28ae7db651b2bb8fc9cd33b4f8d4d.js"></script>
 
-![png](../assets/visualising_stock_correlations_files/visualising_stock_correlations_33_0.png)
+![[png]({{site.baseurl}}/assets/visualising_stock_correlations_files/visualising_stock_correlations_33_0.png)
 
 
 The improved graph has made the clusters of nodes more readable by reducing the node size and reducing the number of edges in the graph. However, reducing the clutter was at the expense of conveying some information about the nodes such as nodes with the most strong correlations and their relative strengths.
