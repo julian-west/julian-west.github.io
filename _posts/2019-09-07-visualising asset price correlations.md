@@ -7,6 +7,7 @@ tags:
   - Visualisations
   - Plotly
   - Quantitative Finance
+  - Network Analytics
 ---
 
 
