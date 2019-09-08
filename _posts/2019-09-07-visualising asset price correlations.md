@@ -8,7 +8,7 @@ tags:
   - Plotly
   - Quantitative Finance
   - Network Analytics
-image: ../assets/visualising_stock_correlations_files/screenshot.png
+img: ../assets/visualising_stock_correlations_files/screenshot.png
 ---
 
 
