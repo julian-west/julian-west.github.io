@@ -13,6 +13,8 @@ excerpt: "Identifying risk in your stocks portfolio"
 header:
   teaser: /assets/images/stock-correlations-screenshot.png
 image: /assets/images/stock-correlations-screenshot.png
+toc: true
+toc_label: "Visualising Stock Correlations"
 ---
 
 
