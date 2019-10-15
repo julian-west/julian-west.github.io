@@ -15,14 +15,14 @@ header:
 image: assets/predicting player value_files/predicting player value_116_0.png.png
 ---
 
-<img src="predicting player value_files/fifa_img.png" style="height:200px,width:200px">
+<img src='{{site.baseurl}}/assets/predicting player value_files/fifa_img.png' style="width:500px;height:500px;">
 <br>
 
 ### Introduction
 
 >Ever thought some football players are seriously overvalued or that your favourite player in the lower leagues is underrated?
 
-I recently came across a fantastically data-rich website called <a src="sofifa.com" target='_blank'>sofifa.com</a>. It has data on every football player in each professional football league around the world, including their playing attributes, value, position, wage, preferred foot, team, country, contract length, weight..... the list is pretty endless.
+I recently came across a fantastically data-rich website called <a href="sofifa.com" target='\_blank'>sofifa.com</a>. It has data on every football player in each professional football league around the world, including their playing attributes, value, position, wage, preferred foot, team, country, contract length, weight..... the list is pretty endless.
 
 I had been looking for some dataset to practice regression modelling techniques and this looked perfect. Most people use the famous <a src="https://www.kaggle.com/c/boston-housing" target='_blank'>Boston housing data set</a> for this purpose, but I have lost count of the number of blog posts repeating the same analysis and repeating the same results (😴) so thought it would be more interesting to curate my own dataset - this also provided an excellent excuse to write a webscraper to collect the data (one of my favourite pastimes🙈).
 
