@@ -59,7 +59,7 @@ plugins:
 author:
   name   : "Julian West"
   avatar : "/assets/images/bio-photo.jpg"
-  bio    : "Interested in all things data"
+  bio    : "Data Science | Quantitative Finance"
   links:
     - label: "LinkedIn"
       icon: "fab fa-linkedin"
