@@ -15,7 +15,7 @@ header:
 image: assets/predicting player value_files/predicting player value_116_0.png.png
 ---
 
-<img src='{{site.baseurl}}/assets/predicting player value_files/fifa_img.png' style="width:500px;height:500px;">
+<img src='{{site.baseurl}}/assets/predicting player value_files/fifa_img.png' style="width:200px;height:200px;">
 <br>
 
 ### Introduction
@@ -24,9 +24,9 @@ image: assets/predicting player value_files/predicting player value_116_0.png.pn
 
 I recently came across a fantastically data-rich website called <a href="sofifa.com" target='\_blank'>sofifa.com</a>. It has data on every football player in each professional football league around the world, including their playing attributes, value, position, wage, preferred foot, team, country, contract length, weight..... the list is pretty endless.
 
-I had been looking for some dataset to practice regression modelling techniques and this looked perfect. Most people use the famous <a src="https://www.kaggle.com/c/boston-housing" target='_blank'>Boston housing data set</a> for this purpose, but I have lost count of the number of blog posts repeating the same analysis and repeating the same results (😴) so thought it would be more interesting to curate my own dataset - this also provided an excellent excuse to write a webscraper to collect the data (one of my favourite pastimes🙈).
+I had been looking for some dataset to practice regression modelling techniques and this looked perfect. Most people use the famous <a href="https://www.kaggle.com/c/boston-housing" target='\_blank'>Boston housing data set</a> for this purpose, but I have lost count of the number of blog posts repeating the same analysis and repeating the same results (😴) so thought it would be more interesting to curate my own dataset - this also provided an excellent excuse to write a webscraper to collect the data (one of my favourite pastimes🙈).
 
-After collecting the data (<a src='https://github.com/julian-west/sofifa-analysis/tree/master/data_collection' target='_blank'>webscraper here</a>),I set about inspecting the dataset features and creating a model to predict the value of each player. There were three main questions I wanted to answer:
+After collecting the data (<a href='https://github.com/julian-west/sofifa-analysis/tree/master/data_collection' target='\_blank'>webscraper here</a>),I set about inspecting the dataset features and creating a model to predict the value of each player. There were three main questions I wanted to answer:
 
 
 1. Can the value of a football player be predicted from their playing attributes and meta data?
@@ -132,17 +132,17 @@ Initially, six regression models were tested on the full set of features (linear
 
 
 
-![png](../assets/predicting%20player%20value_files/predicting%20player%20value_114_2.png)
+<img src='{{site.baseurl}}/assets/predicting%20player%20value_files/predicting%20player%20value_114_2.png'>
 
 
 SHAP values were used to interpret the XGBoost model with overall rating, player potential and age found to be the most important features. Age had a non-linear relationship with the target variable with older players having a significantly lower predicted market value. Of the skills features, attacking skills (Crossing, finishing, short passing etc.) were the most important for increasing the predicted value.
 
 
-![png](../assets/predicting%20player%20value_files/predicting%20player%20value_116_0.png)
+<img src='{{site.baseurl}}/assets/predicting%20player%20value_files/predicting%20player%20value_116_0.png'>
 
 
 
-![png](../assets/predicting%20player%20value_files/predicting%20player%20value_116_1.png)
+<img src='{{site.baseurl}}/assets/predicting%20player%20value_files/predicting%20player%20value_116_1.png'>
 
 The model was used to identify under and overvalued English players. The overvalued players included relatively famous names and/or players who had played for big clubs in the past. This suggests that popularity/reputation, which was not included as a feature, could inflate the value of players above their fundamental skill.
 
