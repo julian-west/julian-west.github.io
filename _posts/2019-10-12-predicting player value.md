@@ -39,8 +39,8 @@ This information could be beneficial for two main reasons:
 
 Below is an executive summary of the findings of the regression analysis.
 
-> Full code and notebook is available on <a href="https://github.com/julian-west/sofifa-analysis" target="\_blank">Github</a>)  
-To view the Jupyter notebook in nbviewer click <a href="https://nbviewer.jupyter.org/github/julian-west/sofifa-analysis/blob/master/predicting%20player%20value.ipynb target="\_blank">here</a>)
+> Full code and notebook is available on <a href="https://github.com/julian-west/sofifa-analysis" target="\_blank">Github</a>  
+To view the Jupyter notebook in nbviewer click <a href="https://nbviewer.jupyter.org/github/julian-west/sofifa-analysis/blob/master/predicting%20player%20value.ipynb" target="\_blank">here</a>)
 
 
 ## Analysis Summary
