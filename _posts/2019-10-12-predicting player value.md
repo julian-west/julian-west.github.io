@@ -1,5 +1,5 @@
 ---
-title: "Predicting the value of football players using their Fifa statistics"
+title: "Predicting football player values"
 categories:
   - Blog
 tags:
@@ -9,10 +9,10 @@ tags:
   - XGBoost
   - SHAP
 description: "Ever thought some football players are seriously overvalued or that your favourite player in the lower leagues is underrated? Use regression modelling to find out"
-excerpt: "Predicting the market values of football players"
+excerpt: "Predicting the market values of football players from their FIFA statistics"
 header:
-  teaser: assets/predicting player value_files/predicting player value_116_0.png.png
-image: assets/predicting player value_files/predicting player value_116_0.png.png
+  teaser: /assets/predicting player value_files/predicting player value_116_0.png
+image: /assets/predicting player value_files/predicting player value_116_0.png
 ---
 
 <img src='{{site.baseurl}}/assets/predicting player value_files/fifa_img.png' style="width:200px;height:200px;">
