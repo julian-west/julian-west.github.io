@@ -3,12 +3,30 @@ permalink: /about/
 title: "About"
 ---
 
-After completing a master's degree in chemistry from Durham University and spending multiple summers interning
-in accountancy, I finally worked out that data science was far more interesting.
+<p class="message">
+I am currently seeking new opportunities to develop further as a data scientist - please feel free to contact me!
+</p>
 
-Moved into the world of data in my current role at a market research provider to the semiconductor industry.
+I am a data scientist working for a market intelligence provider to the semiconductor industry. Currently completing a MSc Businss Analytics at Imperial College London.
 
-Interested in all things data. In particular, the application of machine learning to quantitative finance. Currently working towards a MSc in Business Analytics at Imperial College London Business School.
+## Technologies
+I have strong coding experience with Python and have a working knowledge of R. 
 
-Outside of work in I play hockey, squash and have been known to occasionally run marathons. I am also fairly handy at [waterskiing](https://www.youtube.com/watch?v=DqTajYkYbEo). 
+**Programming Languages**
+- Python
+- R
+- HTML/CSS
 
+**Libraries/frameworks**
+- Pandas, Numpy, Scipy
+- Matplotlib, Seaborn, Plotly
+- Networkx
+- Sklearn
+- PyTorch
+
+**Database Systems**
+- PostgreSQL
+
+**Collaboration**
+- Docker
+- Git
