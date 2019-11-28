@@ -13,7 +13,7 @@ header:
 image: /assets/centrality_measures_files/network.png
 ---
 
-<img src='{{site.baseurl}}/assets/centrality_measures_files/network.png' style="width:200px;height:200px;">
+<img src='{{site.baseurl}}/assets/centrality_measures_files/network.png' style="width:400px;height:400px;">
 <br>
 
 **Jupyter notebook available at [this](https://github.com/julian-west/network-centrality-suicide-prevention) GitHub repository**
