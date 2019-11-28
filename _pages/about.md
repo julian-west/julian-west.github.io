@@ -30,3 +30,7 @@ I have strong coding experience with Python and have a working knowledge of R.
 **Collaboration**
 - Docker
 - Git
+
+
+-----------------
+

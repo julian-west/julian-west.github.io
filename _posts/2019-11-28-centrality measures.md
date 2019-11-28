@@ -9,9 +9,12 @@ tags:
 description: "Suicide pacts between friends is a big concern in sociology of young adults. Can network analytics help identify at risk pairs of students?"
 excerpt: "Custom centrality metrics for suicide risk identification"
 header:
-  teaser: /assets/entrality_measures_files/network.png
-image: /assets/entrality_measures_files/network.png
+  teaser: /assets/centrality_measures_files/network.png
+image: /assets/centrality_measures_files/network.png
 ---
+
+<img src='{{site.baseurl}}/assets/centrality_measures_files/network.png' style="width:200px;height:200px;">
+<br>
 
 **Jupyter notebook available at [this](https://github.com/julian-west/network-centrality-suicide-prevention) GitHub repository**
 
