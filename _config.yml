@@ -113,16 +113,17 @@ tag_archive:
   type: liquid
   path: /tags/
 
-analytics:
-  provider: "google-gtag"
-  google:
-    tracking_id: "UA-147228624-1"
-    anonymize_ip: false # default
 
 analytics:
   provider: "google-gtag"
   google:
     tracking_id: "GTM-WHLG7H7"
+    anonymize_ip: false # default
+
+analytics:
+  provider: "google"
+  google:
+    tracking_id: "UA-147228624-1"
     anonymize_ip: false # default
 
 google_site_verification: "QR0IdkDEH3Iiqqj__0P7uNYh1n571ccJffWYyq579vU"
