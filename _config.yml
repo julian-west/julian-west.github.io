@@ -122,3 +122,9 @@ analytics:
     anonymize_ip: false # default
 
 google_site_verification: "QR0IdkDEH3Iiqqj__0P7uNYh1n571ccJffWYyq579vU"
+
+
+comments:
+  provider: "disqus"
+  disqus:
+    shortname: "https-julian-west-github-io"
