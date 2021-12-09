@@ -1,5 +1,6 @@
 ---
 title: "Visualising asset price correlations"
+canonical_url: https://engineeringfordatascience.com/posts/visualising_asset_price_correlations/
 categories:
   - Blog
 tags:
@@ -20,6 +21,8 @@ toc_label: "Visualising Stock Correlations"
 
 <img src='{{site.baseurl}}/assets/visualising_stock_correlations_files/stock_correlations_gif.gif' style="width:500px;height:500px;">
 
+
+> ⚠️  Please see updated and improved article on my new blog - [Engineering for Data Science](https://engineeringfordatascience.com/posts/visualising_asset_price_correlations/) 
 
 ### Topics covered
 - __Calculating correlations between asset classes__
